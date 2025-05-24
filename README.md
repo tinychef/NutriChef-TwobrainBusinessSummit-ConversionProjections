@@ -13,7 +13,6 @@ The primary goal of this application is to make complex event performance data a
 You can view the live interactive SPA here:
 
 ** https://tinychef.github.io/NutriChef-TwobrainBusinessSummit-ConversionProjections/ **
-*(Please replace `YOUR_USERNAME` and `YOUR_REPOSITORY_NAME` with your actual GitHub username and repository name.)*
 
 ## Key Features
 
