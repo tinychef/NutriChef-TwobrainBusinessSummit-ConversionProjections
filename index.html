@@ -1,119 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Conversion Rate Analysis Infographic</title>
+    <title>Interactive Event Conversion Analysis</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!--
-        Chosen Color Palette: "Vibrant Teal and Coral"
-        - Primary (Teal): #1A535C (Dark Teal - for text, dark accents)
-        - Secondary (Coral): #FF6B6B (Coral - for highlights, calls to action, chart elements)
-        - Accent 1 (Light Teal): #4ECDC4 (Turquoise - for chart elements, secondary highlights)
-        - Accent 2 (Yellow): #F9E79F (Pale Yellow - for backgrounds of some elements, or subtle highlights)
-        - Background (Light): #F7FFF7 (Mint Cream - main page background)
-        - Text Light: #FFFFFF
-        - Card Background: #FFFFFF
+    <!-- Application Structure Plan:
+        The SPA is structured as a narrative, single-scrollable page to guide the user through the event conversion analysis logically.
+        1.  Hero: Introduces the core topic and the key projected conversion range (3-10%).
+        2.  The Unique Opportunity: Details the event's special characteristics (High-Ticket, Closed-Door, Pre-Qualified) and NutriChef's advantageous position (Sole Offering, Main Stage Proximity) using interactive cards. An HTML/CSS funnel visualizes the accelerated sales process. This section establishes *why* this event is special.
+        3.  Understanding the Numbers (Benchmarking): Presents Table 1 data in an accessible HTML table, with clear explanations of why event-specific benchmarks are crucial. This provides context for the projections.
+        4.  Drivers of Success (Strategic Advantages): Highlights the synergistic impact of pre-qualification, booth location, and sole offering status using iconography and concise text. This explains *how* the high conversion is possible.
+        5.  Projected Conversion Funnel: Features an interactive Chart.js bar chart visualizing the funnel from 800 participants to closed deals (Table 2 data), alongside the key 3-10% and 24-80 deal figures. This shows the *expected outcomes*.
+        6.  Maximizing Potential (Actionable Strategies): Uses an accordion for on-site, post-event, and niche leveraging strategies, plus an HTML/CSS timeline for the critical follow-up window. This section now includes new Gemini API-powered tools: a Lead Qualification Assistant and a Follow-up Email Draft Generator. This offers *how to achieve* the best results.
+        7.  Conclusion & Key Takeaways: Summarizes the strategic importance and reiterates the opportunity.
+        This flow was chosen for its storytelling capability, breaking down complex information into digestible, interactive sections, promoting user understanding and engagement better than a direct mirror of the report's structure.
     -->
-    <!--
-        Narrative & Structure Plan:
-        1.  Hero/Introduction: Title, brief overview of the report's purpose.
-        2.  Executive Summary Highlights: Key conversion rate (3-10%) and deal numbers (24-80) as "Single Big Numbers".
-        3.  Understanding the Unique Event:
-            -   Event Characteristics (High-Ticket, Closed-Door, Pre-Qualified): Styled list/cards.
-            -   The Nutrition Offering (Sole provider): Text highlight.
-            -   Impact Visualization: Simplified HTML/CSS funnel showing accelerated sales process.
-        4.  Benchmarking - Context is Key:
-            -   Comparative B2B Rates (Table 1 from report): HTML Table.
-            -   Why event-specifics matter: Text explanation.
-        5.  Strategic Advantages - The Multipliers:
-            -   Pre-Qualified Audience Power: Donut chart (e.g., % of attendees being MQL/SQL quality).
-            -   Main Stage Proximity & Sole Offering: Text with icons (Unicode).
-        6.  Expected Conversion Funnel Breakdown:
-            -   Visual Funnel (Participants -> Engaged -> SQLs -> Deals): Bar chart or HTML/CSS funnel.
-            -   Projected Closed Deals Range (Table 2 from report): HTML Table.
-        7.  Maximizing Success - Actionable Strategies:
-            -   On-Site, Post-Event, Leveraging Niche: Styled lists.
-            -   Importance of Follow-up: Timeline-like HTML/CSS graphic for 48-72hr window.
-        8.  Conclusion - The Big Picture:
-            -   Reiterate key conversion range and deal numbers.
-            -   Emphasize strategic value.
-        Confirmation: NO SVG graphics will be used. NO Mermaid JS will be used.
-    -->
-    <!--
-        Visualization Choices:
-        -   Overall Conversion Rate (3-10%): Goal: Inform. Chosen: Single Big Number. Justification: Clear, immediate impact for a key stat. Method: HTML/Tailwind. NO SVG.
-        -   Closed Deals (24-80): Goal: Inform. Chosen: Single Big Number. Justification: Highlights tangible outcome. Method: HTML/Tailwind. NO SVG.
-        -   Accelerated Sales Funnel (Event vs. Typical): Goal: Organize/Compare. Chosen: HTML/CSS Flow Chart (simplified funnel). Justification: Visually shows the compression of sales stages due to event specifics. Method: HTML/Tailwind. NO SVG.
-        -   Comparative B2B Conversion Rates (Table 1): Goal: Organize/Compare. Chosen: Table. Justification: Direct representation of tabular data from report. Method: HTML/Tailwind. NO SVG.
-        -   Pre-Qualified Audience Impact (e.g. % MQL/SQL): Goal: Inform/Compare. Chosen: Donut Chart. Justification: Shows proportion of high-quality leads. Method: Chart.js (Canvas). NO SVG.
-        -   Expected Conversion Funnel (Participants to Deals): Goal: Organize/Change. Chosen: Bar Chart (Funnel-like). Justification: Clearly shows progression and drop-off through stages. Method: Chart.js (Canvas). NO SVG. (Alternative: HTML/CSS funnel if bar chart less clear).
-        -   Projected Closed Deals (Table 2): Goal: Organize. Chosen: Table. Justification: Direct representation. Method: HTML/Tailwind. NO SVG.
-        -   Follow-up Timeline (48-72hr): Goal: Organize/Change. Chosen: HTML/CSS Timeline. Justification: Emphasizes time-critical action. Method: HTML/Tailwind. NO SVG.
-        Confirmation: NO SVG graphics will be used. NO Mermaid JS will be used.
+    <!-- Visualization & Content Choices:
+        - Executive Summary (3-10% deals): Goal: Inform. Viz: Large Text Stat. Interaction: None. Justification: Immediate high-level takeaway. Method: HTML/Tailwind.
+        - Event Characteristics (High-Ticket, etc.): Goal: Inform/Organize. Viz: Interactive Cards. Interaction: Click/Hover to reveal more detail (JS toggle). Justification: Allows concise presentation with optional depth. Method: HTML/Tailwind/JS.
+        - Accelerated Sales Funnel: Goal: Organize/Compare. Viz: HTML/CSS Diagram (Funnel). Interaction: None. Justification: Simple visual representation of a key concept. Method: HTML/Tailwind.
+        - Benchmarking Table (Table 1): Goal: Compare/Organize. Viz: HTML Table. Interaction: Subtle hover effects for readability. Justification: Clear presentation of structured data. Method: HTML/Tailwind.
+        - Strategic Advantages (Pre-qualification, etc.): Goal: Inform. Viz: Icon + Text Blocks. Interaction: None. Justification: Clear, concise communication of key drivers. Method: HTML/Tailwind (Unicode icons).
+        - Conversion Funnel Chart (Table 2 data): Goal: Change/Organize. Viz: Chart.js Bar Chart. Interaction: Hover for tooltips with exact numbers. Justification: Dynamic visualization of funnel stages and drop-offs. Method: Chart.js (Canvas).
+        - Actionable Strategies (On-site, Post-event): Goal: Organize/Inform. Viz: Accordion. Interaction: Click to expand/collapse. Justification: Manages large amount of text efficiently. Method: HTML/Tailwind/JS.
+        - Follow-up Timeline: Goal: Organize/Change. Viz: HTML/CSS Timeline. Interaction: None. Justification: Visual emphasis on time-critical actions. Method: HTML/Tailwind.
+        - Lead Qualification Assistant: Goal: Inform/Organize. Viz: Text input/output. Interaction: Button click to call LLM. Justification: Provides AI-powered lead qualification. Method: Gemini API (gemini-2.0-flash), HTML/Tailwind/JS.
+        - Follow-up Email Draft Generator: Goal: Inform/Organize. Viz: Form input/text output. Interaction: Button click to call LLM, copy button. Justification: Automates personalized email drafting. Method: Gemini API (gemini-2.0-flash), HTML/Tailwind/JS.
+        - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
     -->
     <style>
-        body {
-            font-family: 'Inter', sans-serif; /* Assuming Inter is a fallback, Tailwind uses system fonts by default */
-            background-color: #F7FFF7; /* Mint Cream */
-            color: #1A535C; /* Dark Teal */
-        }
+        body { font-family: 'Inter', sans-serif; background-color: #FAF7F2; color: #3D405B; }
         .chart-container {
             position: relative;
             width: 100%;
-            max-width: 600px; /* Default max-width */
+            max-width: 600px;
             margin-left: auto;
             margin-right: auto;
-            height: 300px; /* Base height */
-            max-height: 400px; /* Max height */
+            height: 300px; /* Base height for mobile */
+            max-height: 450px;
         }
         @media (min-width: 768px) { /* md breakpoint */
             .chart-container {
-                height: 350px;
+                height: 380px; /* Taller for tablets and desktops */
             }
         }
-        .card {
-            background-color: #FFFFFF; /* Card Background */
-            border-radius: 0.5rem; /* rounded-lg */
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
-            padding: 1.5rem; /* p-6 */
-            margin-bottom: 1.5rem; /* mb-6 */
-        }
-        .primary-text { color: #1A535C; } /* Dark Teal */
-        .secondary-text { color: #FF6B6B; } /* Coral */
-        .accent-text { color: #4ECDC4; } /* Turquoise */
-        .bg-primary { background-color: #1A535C; }
-        .bg-secondary { background-color: #FF6B6B; }
-        .bg-accent-1 { background-color: #4ECDC4; }
-        .bg-accent-2 { background-color: #F9E79F; } /* Pale Yellow */
-        .border-secondary { border-color: #FF6B6B; }
-
-        .funnel-stage {
-            @apply py-2 px-4 text-center text-white mb-1 transition-all duration-300;
+        .hero-bg { background-color: #3D405B; } /* Independence */
+        .accent-color-1 { color: #81B29A; } /* Eton Blue */
+        .bg-accent-1 { background-color: #81B29A; }
+        .border-accent-1 { border-color: #81B29A; }
+        .accent-color-2 { color: #E07A5F; } /* Terra Cotta */
+        .bg-accent-2 { background-color: #E07A5F; }
+        .text-section-heading { color: #4A5568; } /* Cool Gray */
+        .card { background-color: #FFFFFF; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06); }
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+        .nav-link { transition: color 0.3s ease; }
+        .nav-link.active { color: #E07A5F; font-weight: 600; }
+        .funnel-stage-interactive {
             clip-path: polygon(0% 0%, 100% 0%, 90% 100%, 10% 100%);
+            transition: transform 0.2s ease-in-out;
         }
-        .timeline-item {
-            @apply relative pl-8 py-2;
+        .funnel-stage-interactive:hover { transform: scale(1.03); }
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #E07A5F;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
         }
-        .timeline-item::before {
-            @apply content-[''] absolute left-2 top-1/2 w-3 h-3 bg-secondary rounded-full -translate-y-1/2;
-        }
-        .timeline-item::after {
-            @apply content-[''] absolute left-[0.8125rem] top-[calc(50%_+_0.375rem)] w-px h-full bg-gray-300;
-        }
-        .timeline-item:last-child::after {
-            @apply hidden;
-        }
-        .big-stat-value {
-            font-size: 3rem; /* Tailwind text-5xl or text-6xl */
-            font-weight: 700; /* bold */
-            color: #FF6B6B; /* Coral */
-        }
-        .big-stat-label {
-            font-size: 1.125rem; /* text-lg */
-            color: #1A535C; /* Dark Teal */
-            margin-top: 0.5rem; /* mt-2 */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
     <link rel="preconnect" href="https://rsms.me/">
@@ -122,374 +81,643 @@
         tailwind.config = {
             theme: {
                 extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], },
                     colors: {
-                        primary: '#1A535C',
-                        secondary: '#FF6B6B',
-                        'accent-1': '#4ECDC4',
-                        'accent-2': '#F9E79F',
-                        'light-bg': '#F7FFF7',
-                        'card-bg': '#FFFFFF',
-                        'text-light': '#FFFFFF',
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
+                        'brand-bg': '#FAF7F2',
+                        'brand-text-primary': '#3D405B',
+                        'brand-text-heading': '#4A5568',
+                        'brand-accent-1': '#81B29A',
+                        'brand-accent-2': '#E07A5F',
+                        'brand-card-bg': '#FFFFFF',
+                    }
                 }
             }
         }
     </script>
 </head>
-<body class="bg-light-bg text-primary font-sans">
+<body class="antialiased">
 
-    <header class="bg-primary text-text-light py-8 px-4 text-center">
-        <h1 class="text-4xl font-bold mb-2">Event Conversion Rate Analysis</h1>
-        <p class="text-lg max-w-3xl mx-auto">Visualizing the Potential of High-Ticket, Pre-Qualified Fitness Events</p>
+    <nav id="mainNav" class="bg-brand-bg/80 backdrop-blur-md shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between">
+                <div class="text-xl font-semibold text-brand-text-primary">Event Conversion Insights</div>
+                <div class="hidden md:flex space-x-4">
+                    <a href="#opportunity" class="nav-link text-brand-text-primary hover:text-brand-accent-2">Opportunity</a>
+                    <a href="#benchmarking" class="nav-link text-brand-text-primary hover:text-brand-accent-2">Benchmarks</a>
+                    <a href="#drivers" class="nav-link text-brand-text-primary hover:text-brand-accent-2">Drivers</a>
+                    <a href="#projections" class="nav-link text-brand-text-primary hover:text-brand-accent-2">Projections</a>
+                    <a href="#strategies" class="nav-link text-brand-text-primary hover:text-brand-accent-2">Strategies</a>
+                    <a href="#conclusion" class="nav-link text-brand-text-primary hover:text-brand-accent-2">Conclusion</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobileMenuButton" class="text-brand-text-primary focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobileMenu" class="md:hidden hidden bg-brand-bg shadow-lg">
+            <a href="#opportunity" class="block py-2 px-6 text-sm text-brand-text-primary hover:bg-brand-accent-1/20">Opportunity</a>
+            <a href="#benchmarking" class="block py-2 px-6 text-sm text-brand-text-primary hover:bg-brand-accent-1/20">Benchmarks</a>
+            <a href="#drivers" class="block py-2 px-6 text-sm text-brand-text-primary hover:bg-brand-accent-1/20">Drivers</a>
+            <a href="#projections" class="block py-2 px-6 text-sm text-brand-text-primary hover:bg-brand-accent-1/20">Projections</a>
+            <a href="#strategies" class="block py-2 px-6 text-sm text-brand-text-primary hover:bg-brand-accent-1/20">Strategies</a>
+            <a href="#conclusion" class="block py-2 px-6 text-sm text-brand-text-primary hover:bg-brand-accent-1/20">Conclusion</a>
+        </div>
+    </nav>
+
+    <header class="hero-bg text-white py-16 md:py-24 px-6 text-center">
+        <div class="container mx-auto">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Unlocking High-Value Event Conversions</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">An interactive analysis of projected success at a high-ticket, pre-qualified fitness event.</p>
+            <div class="text-5xl md:text-6xl font-extrabold accent-color-2">
+                3% - 10%
+            </div>
+            <p class="text-lg md:text-xl mt-2">Projected Conversion Rate (24-80 Closed Deals from 800 Participants)</p>
+        </div>
     </header>
 
-    <main class="container mx-auto p-4 md:p-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <main class="container mx-auto p-6 md:p-10">
 
-            <section class="card lg:col-span-3">
-                <h2 class="text-2xl font-semibold mb-4 primary-text">Executive Summary: Key Projections</h2>
-                <p class="mb-6 text-gray-700">This analysis focuses on a nutrition offering at a high-ticket, closed-door, pre-qualified US fitness event. The unique, favorable conditions significantly elevate conversion potential from 800 participants.</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-center">
-                    <div>
-                        <p class="big-stat-value">3%-10%</p>
-                        <p class="big-stat-label">Expected Overall Conversion Rate</p>
-                    </div>
-                    <div>
-                        <p class="big-stat-value">24-80</p>
-                        <p class="big-stat-label">Projected Closed Deals</p>
-                    </div>
-                </div>
-                <p class="mt-6 text-sm text-gray-600 text-center">Achieving the higher end depends on robust post-event follow-up.</p>
-            </section>
-
-            <section class="card md:col-span-2 lg:col-span-3">
-                <h2 class="text-2xl font-semibold mb-4 primary-text">Understanding the Unique Event & Offering</h2>
-                <p class="mb-6 text-gray-700">The event's characteristics and the nature of the nutrition solution are pivotal in shaping conversion dynamics, effectively accelerating the sales funnel.</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <h3 class="text-xl font-medium mb-2 accent-text">Key Event Characteristics:</h3>
-                        <ul class="list-disc list-inside space-y-1 text-gray-700">
-                            <li><span class="font-semibold">High-Ticket:</span> Serious professional audience, decision-makers.</li>
-                            <li><span class="font-semibold">Closed-Door:</span> Exclusive, curated, focused engagement.</li>
-                            <li><span class="font-semibold">High Pre-Qualified:</span> Vetted attendees, relevant and interested.</li>
-                            <li><span class="font-semibold">US Fitness Event:</span> Specific market context.</li>
-                        </ul>
-                        <p class="mt-4 text-gray-700">This combination means attendees are already past initial awareness, entering the funnel at MQL or SQL stages.</p>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-medium mb-2 accent-text">The Nutrition Offering Solution:</h3>
-                        <p class="text-gray-700 mb-2">Likely a B2B solution (e.g., AI-powered white-label plans for gyms/clinics like NutriChef) or high-value B2C coaching.</p>
-                        <div class="p-4 bg-accent-2 rounded-lg">
-                            <p class="font-semibold text-primary"><span class="text-2xl mr-2">🏆</span>"Only Nutrition Offering Solution Booth"</p>
-                            <p class="text-sm text-primary mt-1">This creates a temporary monopolistic advantage, concentrating demand and enhancing perceived authority.</p>
+        <section id="opportunity" class="my-12 md:my-16 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-center mb-2 text-brand-text-heading">The Unique Opportunity</h2>
+            <p class="text-center text-lg text-brand-text-primary mb-10 max-w-2xl mx-auto">This event presents a rare confluence of factors that significantly elevate conversion potential. Understanding these is key to grasping the projected outcomes.</p>
+            
+            <div class="grid md:grid-cols-2 gap-8 items-start">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6 text-brand-text-primary">Event & Offering Highlights:</h3>
+                    <div class="space-y-4">
+                        <div class="card p-5 interactive-card" data-title="High-Ticket Event" data-text="Attracts serious professionals with decision-making power and budget, indicating high intent.">
+                            <h4 class="text-xl font-semibold accent-color-1 mb-1">🎟️ High-Ticket Event</h4>
+                            <p class="text-sm text-gray-600">Serious intent, decision-makers.</p>
+                        </div>
+                        <div class="card p-5 interactive-card" data-title="Closed-Door & Pre-Qualified" data-text="Exclusive, curated audience, vetted for relevance and need. This means interactions start at a more advanced stage of the buying cycle.">
+                            <h4 class="text-xl font-semibold accent-color-1 mb-1">🔒 Closed-Door & Pre-Qualified</h4>
+                            <p class="text-sm text-gray-600">Exclusive, vetted, high-relevance audience.</p>
+                        </div>
+                         <div class="card p-5 interactive-card" data-title="Sole Nutrition Offering" data-text="NutriChef is the only nutrition solution, eliminating direct competition and capturing 100% of related demand. This boosts perceived authority.">
+                            <h4 class="text-xl font-semibold accent-color-1 mb-1">🥇 Sole Nutrition Offering</h4>
+                            <p class="text-sm text-gray-600">No direct competition, captures all demand.</p>
+                        </div>
+                        <div class="card p-5 interactive-card" data-title="Main Stage Proximity" data-text="High visibility booth location ensures maximum exposure to energized, receptive attendees.">
+                            <h4 class="text-xl font-semibold accent-color-1 mb-1">📍 Main Stage Proximity</h4>
+                            <p class="text-sm text-gray-600">Maximum visibility, high foot traffic.</p>
                         </div>
                     </div>
                 </div>
-                <div class="mt-8">
-                    <h3 class="text-xl font-medium mb-3 text-center primary-text">Accelerated Sales Funnel Visualization</h3>
-                    <p class="text-center text-gray-600 mb-4">At this event, pre-qualification bypasses early funnel stages.</p>
-                    <div class="w-full max-w-md mx-auto">
-                        <div class="funnel-stage bg-gray-400 w-full">Typical: Awareness (Broad)</div>
-                        <div class="funnel-stage bg-gray-500 w-11/12 mx-auto">Typical: Interest (Leads)</div>
-                        <div class="funnel-stage bg-accent-1 w-10/12 mx-auto">Event Starts Here: Consideration (MQLs)</div>
-                        <div class="funnel-stage bg-secondary w-9/12 mx-auto">Event Focus: Evaluation (SQLs) & Decision</div>
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6 text-brand-text-primary">Accelerated Sales Funnel:</h3>
+                    <p class="text-brand-text-primary mb-4">The event's nature means attendees often bypass early funnel stages, entering as Marketing Qualified Leads (MQLs) or Sales Qualified Leads (SQLs).</p>
+                    <div class="bg-white p-6 rounded-lg shadow-lg">
+                        <div class="space-y-1 text-center text-sm font-medium">
+                            <div class="funnel-stage-interactive bg-gray-300 text-gray-700 py-3 px-2 w-full">Typical: Broad Awareness / Initial Interest</div>
+                            <div class="funnel-stage-interactive bg-gray-400 text-gray-700 py-3 px-2 w-11/12 mx-auto">Typical: Lead Generation</div>
+                            <div class="funnel-stage-interactive bg-brand-accent-1 text-white py-3 px-2 w-10/12 mx-auto">EVENT STARTS HERE: Consideration (MQLs)</div>
+                            <div class="funnel-stage-interactive bg-brand-accent-2 text-white py-3 px-2 w-9/12 mx-auto">EVENT FOCUS: Evaluation (SQLs) & Decision</div>
+                        </div>
+                        <p class="text-xs text-center mt-3 text-gray-500">This event effectively compresses the sales cycle.</p>
                     </div>
-                    <p class="text-center text-sm text-gray-500 mt-2">This event effectively starts engagements at a more qualified stage.</p>
                 </div>
-            </section>
+            </div>
+            <div id="detailModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center p-4 z-50">
+                <div class="bg-white p-6 rounded-lg shadow-xl max-w-md w-full">
+                    <h3 id="modalTitle" class="text-2xl font-bold mb-4 accent-color-1"></h3>
+                    <p id="modalText" class="text-brand-text-primary mb-6"></p>
+                    <button id="closeModalButton" class="bg-brand-accent-2 text-white px-4 py-2 rounded hover:bg-opacity-80 transition">Close</button>
+                </div>
+            </div>
+        </section>
 
-            <section class="card lg:col-span-3">
-                <h2 class="text-2xl font-semibold mb-4 primary-text">Benchmarking Conversion Rates: Context is Key</h2>
-                <p class="mb-6 text-gray-700">While general B2B benchmarks provide context, the event's unique nature makes event-specific and high-quality lead benchmarks far more relevant. General e-commerce rates for high-ticket items (0.5-1.5%) are not directly applicable here.</p>
+        <section id="benchmarking" class="my-12 md:my-16 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-center mb-2 text-brand-text-heading">Understanding the Numbers</h2>
+            <p class="text-center text-lg text-brand-text-primary mb-10 max-w-2xl mx-auto">While general B2B benchmarks offer context, this event's unique profile demands a focus on high-quality lead and event-specific conversion rates.</p>
+            <div class="card p-6 md:p-8">
+                <h3 class="text-xl font-semibold mb-4 text-brand-text-primary">Comparative B2B Conversion Rate Benchmarks (Source: Table 1)</h3>
+                <p class="text-sm text-gray-600 mb-6">The table below shows various benchmarks. Note how event-specific and qualified lead rates are significantly higher and more relevant to this scenario than broad or e-commerce rates.</p>
                 <div class="overflow-x-auto">
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50">
                             <tr>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rate (%)</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Relevance</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Relevance to This Event</th>
                             </tr>
                         </thead>
-                        <tbody class="bg-white divide-y divide-gray-200 text-sm text-gray-700">
-                            <tr><td class="px-6 py-4 whitespace-nowrap">General B2B Lead Conversion</td><td class="px-6 py-4 whitespace-nowrap">2-5%</td><td class="px-6 py-4">Broad, less applicable.</td></tr>
-                            <tr><td class="px-6 py-4 whitespace-nowrap">Professional Services</td><td class="px-6 py-4 whitespace-nowrap">~12.3%</td><td class="px-6 py-4">More relevant for high-value offerings.</td></tr>
-                            <tr><td class="px-6 py-4 whitespace-nowrap">Event Leads vs. Other Channels</td><td class="px-6 py-4 whitespace-nowrap">31% Higher</td><td class="px-6 py-4">Highlights event lead quality.</td></tr>
-                            <tr><td class="px-6 py-4 whitespace-nowrap">Direct/Inbound B2B (Qualified)</td><td class="px-6 py-4 whitespace-nowrap">5-10%</td><td class="px-6 py-4">Relevant for qualified, interested leads.</td></tr>
-                            <tr><td class="px-6 py-4 whitespace-nowrap">MQL to SQL Conversion</td><td class="px-6 py-4 whitespace-nowrap">20-30%</td><td class="px-6 py-4">Indicates potential of qualified leads.</td></tr>
-                            <tr><td class="px-6 py-4 whitespace-nowrap">Opportunities to Won</td><td class="px-6 py-4 whitespace-nowrap">20-30%</td><td class="px-6 py-4">Final closing stage for qualified ops.</td></tr>
+                        <tbody class="bg-white divide-y divide-gray-200 text-sm">
+                            <tr><td class="px-6 py-4">General B2B Lead Conversion</td><td class="px-6 py-4">2-5%</td><td class="px-6 py-4">Low relevance (event is highly specific)</td></tr>
+                            <tr><td class="px-6 py-4">Professional Services</td><td class="px-6 py-4">~12.3%</td><td class="px-6 py-4">Highly relevant (high-value offering)</td></tr>
+                            <tr><td class="px-6 py-4">High-Ticket E-commerce</td><td class="px-6 py-4">0.5-1.5%</td><td class="px-6 py-4">Low relevance (online, unqualified vs. in-person, pre-qualified)</td></tr>
+                            <tr class="bg-brand-accent-1/10"><td class="px-6 py-4 font-medium">Event Leads (vs. other channels)</td><td class="px-6 py-4 font-medium">31% higher</td><td class="px-6 py-4 font-medium">Very High relevance (highlights event lead quality)</td></tr>
+                            <tr><td class="px-6 py-4">Direct/Inbound B2B Sales</td><td class="px-6 py-4">5-10%</td><td class="px-6 py-4">Highly relevant (qualified, personalized)</td></tr>
+                            <tr><td class="px-6 py-4">MQL to SQL Conversion</td><td class="px-6 py-4">20-30%</td><td class="px-6 py-4">Very High relevance (event attendees are often MQL/SQL)</td></tr>
+                            <tr><td class="px-6 py-4">Opportunities to Won</td><td class="px-6 py-4">20-30%</td><td class="px-6 py-4">Very High relevance (final closing stage)</td></tr>
                         </tbody>
                     </table>
                 </div>
-                <p class="mt-4 text-gray-700">The fitness industry's struggle with member conversion highlights a pain point NutriChef addresses, making attendees receptive.</p>
-            </section>
+                <p class="mt-6 text-brand-text-primary">The fitness industry's known challenges in member conversion also mean attendees are actively seeking solutions like NutriChef, further boosting receptivity.</p>
+            </div>
+        </section>
 
-            <section class="card md:col-span-1 lg:col-span-1">
-                <h2 class="text-2xl font-semibold mb-4 primary-text">Strategic Advantages</h2>
-                 <p class="mb-4 text-gray-700">Several factors synergistically amplify conversion potential:</p>
-                <ul class="space-y-3 text-gray-700">
-                    <li class="flex items-start">
-                        <span class="text-secondary text-xl mr-2">⭐</span>
-                        <div><span class="font-semibold">High Pre-Qualification:</span> Attendees are filtered, high-intent, and closer to purchase. More interactions are high-value.</div>
-                    </li>
-                    <li class="flex items-start">
-                        <span class="text-secondary text-xl mr-2">📍</span>
-                        <div><span class="font-semibold">Main Stage Proximity:</span> Maximizes visibility and captures energized, receptive visitors.</div>
-                    </li>
-                    <li class="flex items-start">
-                        <span class="text-secondary text-xl mr-2">🥇</span>
-                        <div><span class="font-semibold">Sole Nutrition Offering:</span> Eliminates direct competition, funnels all related demand to one booth, boosts authority.</div>
-                    </li>
-                </ul>
-                <p class="mt-4 text-gray-700">This combination creates a highly efficient conversion environment.</p>
-            </section>
-
-            <section class="card md:col-span-1 lg:col-span-2">
-                <h2 class="text-2xl font-semibold mb-4 primary-text">Pre-Qualified Audience Impact</h2>
-                <p class="mb-4 text-gray-700">A significant portion of event attendees are already Marketing Qualified Leads (MQLs) or Sales Qualified Leads (SQLs) due to pre-qualification.</p>
-                <div class="chart-container h-[250px] md:h-[300px]">
-                    <canvas id="prequalifiedAudienceChart"></canvas>
+        <section id="drivers" class="my-12 md:my-16 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-center mb-2 text-brand-text-heading">Drivers of Success</h2>
+            <p class="text-center text-lg text-brand-text-primary mb-10 max-w-2xl mx-auto">Three core strategic advantages synergize to create a powerful "conversion multiplier" effect at this event.</p>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card p-6 text-center hover:shadow-xl transition-shadow">
+                    <div class="text-4xl mb-3 accent-color-2">🎯</div>
+                    <h3 class="text-xl font-semibold mb-2 text-brand-text-primary">High Pre-Qualification</h3>
+                    <p class="text-sm text-gray-700">Attendees are filtered, high-intent, and closer to purchase. Interactions start deeper in the sales funnel (MQL/SQL stage).</p>
                 </div>
-                <p class="text-sm text-gray-600 mt-2 text-center">Illustrative: High percentage of attendees are quality leads.</p>
-            </section>
+                <div class="card p-6 text-center hover:shadow-xl transition-shadow">
+                    <div class="text-4xl mb-3 accent-color-2">🌟</div>
+                    <h3 class="text-xl font-semibold mb-2 text-brand-text-primary">Prime Booth Location</h3>
+                    <p class="text-sm text-gray-700">Near the main stage ensures maximum visibility to fresh, energized visitors, boosting quality engagement.</p>
+                </div>
+                <div class="card p-6 text-center hover:shadow-xl transition-shadow">
+                    <div class="text-4xl mb-3 accent-color-2">🏆</div>
+                    <h3 class="text-xl font-semibold mb-2 text-brand-text-primary">Sole Nutrition Offering</h3>
+                    <p class="text-sm text-gray-700">Eliminates direct competition, funnels all related demand to one booth, and enhances perceived authority.</p>
+                </div>
+            </div>
+            <p class="text-center mt-8 text-brand-text-primary">These factors combined mean a higher percentage of the 800 participants will engage, and those engagements are more likely to convert.</p>
+        </section>
 
-
-            <section class="card lg:col-span-3">
-                <h2 class="text-2xl font-semibold mb-4 primary-text">Expected Conversion Funnel Breakdown</h2>
-                <p class="mb-6 text-gray-700">From 800 participants, the journey to closed deals is significantly compressed due to the event's nature. The focus is on converting already qualified interest.</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-                    <div>
-                        <h3 class="text-xl font-medium mb-3 primary-text">Projected Funnel Stages (from 800 Participants)</h3>
-                        <div class="chart-container h-[300px] md:h-[380px]">
+        <section id="projections" class="my-12 md:my-16 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-center mb-2 text-brand-text-heading">Projected Conversion Funnel</h2>
+            <p class="text-center text-lg text-brand-text-primary mb-10 max-w-2xl mx-auto">Based on the unique event dynamics and benchmarks, here's a visualization of the expected conversion from 800 participants to closed deals.</p>
+            <div class="card p-6 md:p-8">
+                <div class="grid md:grid-cols-3 gap-8 items-center">
+                    <div class="md:col-span-2">
+                        <h3 class="text-xl font-semibold mb-4 text-brand-text-primary">Funnel Stages (from 800 Participants)</h3>
+                        <div class="chart-container">
                             <canvas id="conversionFunnelChart"></canvas>
                         </div>
+                        <p class="text-xs text-center mt-2 text-gray-500">Chart shows average estimates within projected ranges.</p>
                     </div>
-                    <div>
-                        <h3 class="text-xl font-medium mb-3 primary-text">Quantitative Projection Summary</h3>
-                        <div class="overflow-x-auto">
-                            <table class="min-w-full divide-y divide-gray-200">
-                                <thead class="bg-gray-50">
-                                    <tr>
-                                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Funnel Stage</th>
-                                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Count (Range)</th>
-                                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Cumulative Rate</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="bg-white divide-y divide-gray-200 text-sm text-gray-700">
-                                    <tr><td class="px-4 py-2">Total Participants</td><td class="px-4 py-2">800</td><td class="px-4 py-2">N/A</td></tr>
-                                    <tr><td class="px-4 py-2">Engaged Booth Visitors</td><td class="px-4 py-2">160 - 280</td><td class="px-4 py-2">20-35%</td></tr>
-                                    <tr><td class="px-4 py-2">Sales Qualified Leads (SQLs)</td><td class="px-4 py-2">64 - 168</td><td class="px-4 py-2">8-21%</td></tr>
-                                    <tr><td class="px-4 py-2 font-semibold text-secondary">Closed Deals</td><td class="px-4 py-2 font-semibold text-secondary">13 - 59 (Refined: 24-80)</td><td class="px-4 py-2 font-semibold text-secondary">1.63-7.38% (Refined: 3-10%)</td></tr>
-                                </tbody>
-                            </table>
+                    <div class="text-center md:text-left">
+                        <h3 class="text-xl font-semibold mb-4 text-brand-text-primary">Key Projections:</h3>
+                        <div class="mb-6">
+                            <p class="text-4xl font-bold accent-color-2">3% - 10%</p>
+                            <p class="text-md text-gray-700">Overall Conversion Rate</p>
                         </div>
-                        <p class="mt-3 text-sm text-gray-600">The refined 3-10% (24-80 deals) considers all strategic advantages and aligns with high-performing direct sales.</p>
+                        <div>
+                            <p class="text-4xl font-bold accent-color-2">24 - 80</p>
+                            <p class="text-md text-gray-700">Closed Deals</p>
+                        </div>
+                        <p class="mt-6 text-sm text-gray-600">The refined 3-10% range considers all strategic advantages and aligns with high-performing direct B2B sales for high-ticket items.</p>
                     </div>
                 </div>
-            </section>
+                 <p class="mt-8 text-brand-text-primary">This funnel is significantly compressed. The "high pre-qualified" nature means the 800 participants are already effectively MQLs or SQLs, justifying the higher conversion rates from the initial pool compared to typical end-to-end funnels.</p>
+            </div>
+        </section>
 
-            <section class="card lg:col-span-3">
-                <h2 class="text-2xl font-semibold mb-4 primary-text">Strategies for Maximizing Conversion</h2>
-                <p class="mb-6 text-gray-700">Achieving the higher end of projections requires active and disciplined lead management, both on-site and post-event.</p>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div>
-                        <h3 class="text-lg font-medium mb-2 accent-text">🚀 On-Site Engagement</h3>
-                        <ul class="list-disc list-inside space-y-1 text-sm text-gray-700">
-                            <li>Immediate demo/meeting scheduling.</li>
-                            <li>Open, inviting, interactive booth.</li>
-                            <li>Clear articulation of value for pre-qualified needs.</li>
-                            <li>Personalized conversations.</li>
-                            <li>Real-time lead qualification.</li>
-                        </ul>
+        <section id="strategies" class="my-12 md:my-16 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-center mb-2 text-brand-text-heading">Maximizing Potential</h2>
+            <p class="text-center text-lg text-brand-text-primary mb-10 max-w-2xl mx-auto">Achieving the upper end of projections requires disciplined on-site engagement and aggressive, personalized post-event follow-up.</p>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="space-y-4">
+                    <div class="card">
+                        <button class="accordion-toggle w-full text-left p-5 flex justify-between items-center hover:bg-gray-50 rounded-t-md">
+                            <h3 class="text-xl font-semibold text-brand-text-primary">🚀 On-Site Engagement Optimization</h3>
+                            <span class="transform transition-transform duration-300 text-brand-accent-1 text-2xl ">▼</span>
+                        </button>
+                        <div class="accordion-content p-5 border-t border-gray-200">
+                            <ul class="list-disc list-inside space-y-2 text-sm text-gray-700">
+                                <li>Implement systems for immediate demo/meeting scheduling.</li>
+                                <li>Design an open, inviting, interactive booth.</li>
+                                <li>Clearly articulate value for pre-qualified needs.</li>
+                                <li>Train staff for personalized conversations and real-time lead qualification.</li>
+                                <li>Focus on the 20% of SQLs likely to drive 80% of ROI.</li>
+                            </ul>
+                            <div class="mt-6 p-4 bg-brand-bg rounded-lg">
+                                <h4 class="text-lg font-semibold text-brand-text-primary mb-3">✨ Lead Qualification Assistant</h4>
+                                <p class="text-sm text-gray-700 mb-3">Input your conversation notes with a lead, and our AI will help qualify them and suggest next steps.</p>
+                                <textarea id="leadNotesInput" class="w-full p-2 border border-gray-300 rounded-md mb-3 text-sm focus:ring-brand-accent-1 focus:border-brand-accent-1" rows="4" placeholder="e.g., 'Spoke with John Doe, owner of Fitness Pro Gym. Interested in white-label nutrition plans for his members. Asked about pricing and integration with existing CRM. Mentioned current solution is too generic.'"></textarea>
+                                <button id="qualifyLeadButton" class="bg-brand-accent-2 text-white px-4 py-2 rounded hover:bg-opacity-80 transition flex items-center justify-center">
+                                    <span id="qualifyLeadButtonText">✨ Qualify Lead</span>
+                                    <div id="qualifyLeadLoading" class="loading-spinner hidden ml-2"></div>
+                                </button>
+                                <div id="leadQualificationOutput" class="mt-4 p-3 bg-brand-card-bg border border-brand-accent-1 rounded-md text-sm text-brand-text-primary hidden"></div>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <h3 class="text-lg font-medium mb-2 accent-text">⏱️ Post-Event Follow-Up</h3>
-                        <ul class="list-disc list-inside space-y-1 text-sm text-gray-700">
-                            <li>Re-engage ALL leads within 48-72 hours (CRITICAL).</li>
-                            <li>Tailored email campaigns & direct outreach.</li>
-                            <li>Provide high-quality educational content.</li>
-                            <li>Nurture leads not immediately sales-ready.</li>
-                            <li>Track stage-to-stage conversion rates.</li>
-                        </ul>
+                    <div class="card">
+                        <button class="accordion-toggle w-full text-left p-5 flex justify-between items-center hover:bg-gray-50">
+                            <h3 class="text-xl font-semibold text-brand-text-primary">⏱️ Post-Event Follow-Up & Nurturing</h3>
+                             <span class="transform transition-transform duration-300 text-brand-accent-1 text-2xl ">▼</span>
+                        </button>
+                        <div class="accordion-content p-5 border-t border-gray-200">
+                            <ul class="list-disc list-inside space-y-2 text-sm text-gray-700">
+                                <li>Re-engage ALL leads within 48-72 hours (CRITICAL).</li>
+                                <li>Develop tailored email campaigns and direct outreach.</li>
+                                <li>Provide high-quality educational content (case studies, demos).</li>
+                                <li>Nurture leads not immediately sales-ready.</li>
+                                <li>Track stage-to-stage conversion rates meticulously.</li>
+                            </ul>
+                            <div class="mt-6 p-4 bg-brand-bg rounded-lg">
+                                <h4 class="text-lg font-semibold text-brand-text-primary mb-3">✨ Follow-up Email Draft Generator</h4>
+                                <p class="text-sm text-gray-700 mb-3">Generate a personalized follow-up email draft based on your interaction.</p>
+                                <input type="text" id="leadNameInput" class="w-full p-2 border border-gray-300 rounded-md mb-2 text-sm focus:ring-brand-accent-1 focus:border-brand-accent-1" placeholder="Lead's Name (e.g., John Doe)">
+                                <textarea id="discussionPointsInput" class="w-full p-2 border border-gray-300 rounded-md mb-2 text-sm focus:ring-brand-accent-1 focus:border-brand-accent-1" rows="3" placeholder="Key discussion points (e.g., 'Discussed white-label solutions, pricing, CRM integration. He mentioned generic current solution.')"></textarea>
+                                <input type="text" id="callToActionInput" class="w-full p-2 border border-gray-300 rounded-md mb-3 text-sm focus:ring-brand-accent-1 focus:border-brand-accent-1" placeholder="Desired Call to Action (e.g., 'Schedule a 15-min demo next week')">
+                                <button id="draftEmailButton" class="bg-brand-accent-2 text-white px-4 py-2 rounded hover:bg-opacity-80 transition flex items-center justify-center">
+                                    <span id="draftEmailButtonText">✨ Draft Follow-up Email</span>
+                                    <div id="draftEmailLoading" class="loading-spinner hidden ml-2"></div>
+                                </button>
+                                <textarea id="emailDraftOutput" class="w-full p-2 border border-gray-300 rounded-md mt-4 text-sm text-brand-text-primary hidden" rows="8" readonly></textarea>
+                                <button id="copyEmailButton" class="bg-brand-accent-1 text-white px-4 py-2 rounded hover:bg-opacity-80 transition mt-2 hidden">Copy to Clipboard</button>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <h3 class="text-lg font-medium mb-2 accent-text">💡 Leverage Unique Position</h3>
-                        <ul class="list-disc list-inside space-y-1 text-sm text-gray-700">
-                            <li>Emphasize "only nutrition solution" status.</li>
-                            <li>Showcase specialized niche knowledge.</li>
-                            <li>Share authentic brand story to build trust.</li>
-                            <li>Foster sense of exclusivity and community.</li>
-                        </ul>
+                    <div class="card">
+                        <button class="accordion-toggle w-full text-left p-5 flex justify-between items-center hover:bg-gray-50 rounded-b-md">
+                            <h3 class="text-xl font-semibold text-brand-text-primary">💡 Leveraging Unique Position</h3>
+                            <span class="transform transition-transform duration-300 text-brand-accent-1 text-2xl ">▼</span>
+                        </button>
+                        <div class="accordion-content p-5 border-t border-gray-200">
+                            <ul class="list-disc list-inside space-y-2 text-sm text-gray-700">
+                                <li>Continuously emphasize "only nutrition solution" status.</li>
+                                <li>Showcase specialized niche knowledge and brand story.</li>
+                                <li>Foster a sense of exclusivity and community.</li>
+                                <li>Build and sustain trust, demonstrating deep expertise for high-ticket sales.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-                <div class="mt-6 p-4 bg-accent-2 rounded-lg">
-                    <h4 class="font-semibold text-primary mb-2">Critical Follow-Up Timeline:</h4>
-                    <div class="timeline-item">
-                        <p class="font-medium text-sm">Event Day: Capture Lead & Schedule Next Step</p>
-                        <p class="text-xs text-gray-600">Qualify, personalize, book demo/meeting if possible.</p>
+
+                <div class="card p-6">
+                    <h3 class="text-xl font-semibold text-brand-text-primary mb-4">Critical Follow-Up Timeline:</h3>
+                    <p class="text-sm text-gray-600 mb-4">Speed is paramount. 50% of deals go to the first to follow up.</p>
+                    <div class="relative border-l-2 border-brand-accent-1 pl-6 space-y-6">
+                        <div class="relative">
+                            <div class="absolute -left-[0.85rem] top-1 w-4 h-4 bg-brand-accent-2 rounded-full border-2 border-white"></div>
+                            <h4 class="font-semibold text-brand-text-primary">Event Day</h4>
+                            <p class="text-xs text-gray-600">Capture lead, qualify, schedule next step (demo/meeting).</p>
+                        </div>
+                        <div class="relative">
+                            <div class="absolute -left-[0.85rem] top-1 w-4 h-4 bg-brand-accent-2 rounded-full border-2 border-white"></div>
+                            <h4 class="font-semibold text-brand-text-primary">Within 48 Hours</h4>
+                            <p class="text-xs text-gray-600">Initial personalized follow-up (email, LinkedIn), reference conversation.</p>
+                        </div>
+                        <div class="relative">
+                            <div class="absolute -left-[0.85rem] top-1 w-4 h-4 bg-brand-accent-2 rounded-full border-2 border-white"></div>
+                            <h4 class="font-semibold text-brand-text-primary">Within 72 Hours</h4>
+                            <p class="text-xs text-gray-600">Deeper engagement, provide value (content, answer questions), confirm meeting.</p>
+                        </div>
                     </div>
-                    <div class="timeline-item">
-                        <p class="font-medium text-sm text-secondary">Within 48 Hours: Initial Personalized Follow-Up</p>
-                        <p class="text-xs text-gray-600">Email, connect on LinkedIn, reference conversation.</p>
-                    </div>
-                    <div class="timeline-item">
-                        <p class="font-medium text-sm">Within 72 Hours: Deeper Engagement / Value Add</p>
-                        <p class="text-xs text-gray-600">Share relevant content, answer questions, confirm scheduled meeting.</p>
-                    </div>
-                    <p class="text-xs text-gray-500 mt-2">50% of deals go to the first to follow up. Speed is paramount.</p>
+                     <p class="mt-6 text-sm text-brand-text-primary">Remember: Warm leads turn cold quickly. A robust post-event sales pipeline is non-negotiable for high-ticket success.</p>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <section class="card lg:col-span-3 bg-primary text-text-light">
-                <h2 class="text-2xl font-semibold mb-4">Conclusion: A Strategic Opportunity</h2>
-                <p class="mb-4">The unique confluence of factors at this event creates an exceptional opportunity, projecting a **3% to 10% conversion rate (24-80 new clients)** from 800 participants. This far surpasses typical B2B benchmarks.</p>
-                <p class="mb-4">Success hinges on strategic on-site engagement and, crucially, aggressive, personalized post-event follow-up within 48-72 hours.</p>
-                <p class="font-semibold">This event is not just lead generation; it's a strategic investment in acquiring high-value, pre-qualified clients with potentially high lifetime value and referral potential. It's an acceleration point in the sales cycle.</p>
-                <p class="mt-4 text-sm opacity-80">Systematic tracking and analysis of conversion metrics will be vital for optimizing future event strategies.</p>
-            </section>
-
-        </div>
+        <section id="conclusion" class="my-12 md:my-16 scroll-mt-20 bg-brand-text-primary text-white card p-8 md:p-10">
+            <h2 class="text-3xl font-bold text-center mb-6">Conclusion: A Strategic Imperative</h2>
+            <p class="text-lg mb-4 text-center max-w-3xl mx-auto">This event is more than lead generation; it's an **acceleration point** in the sales cycle for a high-value customer segment. The unique conditions project a **3-10% conversion rate (24-80 clients)**, far exceeding typical B2B results.</p>
+            <p class="text-lg mb-4 text-center max-w-3xl mx-auto">Success hinges on leveraging the strategic advantages on-site and executing a swift, personalized post-event follow-up. Each conversion represents a significant ROI due to the high-ticket nature and potential for long-term client value.</p>
+            <p class="text-lg text-center font-semibold max-w-3xl mx-auto">Systematic tracking and analysis are vital to refine future strategies and maximize returns from such high-potential opportunities.</p>
+            <div class="mt-8 text-center">
+                <h3 class="text-2xl font-bold mb-4 accent-color-2">New: AI-Powered Event Tools!</h3>
+                <p class="text-md max-w-2xl mx-auto">This application now includes integrated AI features to further enhance your event success. Leverage the power of the Gemini API to rapidly qualify leads and draft personalized follow-up emails, streamlining your post-event workflow.</p>
+            </div>
+        </section>
     </main>
 
-    <footer class="text-center py-8 px-4 text-sm text-gray-500">
-        <p>&copy; 2025 NutriChef Event Insights. Infographic based on internal research report.</p>
-        <p>This infographic is for illustrative purposes, based on the provided "Event Conversion Rate Analysis" report.</p>
+    <footer class="text-center py-10 px-6 border-t border-gray-200">
+        <p class="text-sm text-gray-500">&copy; NutriChef Event Insights. SPA generated based on "Event Conversion Rate Analysis" report.</p>
     </footer>
 
     <script>
-        function wrapLabel(str, maxWidth) {
-            if (!str) return '';
+        // Navigation scroll highlighting
+        const navLinks = document.querySelectorAll('#mainNav .nav-link, #mobileMenu a');
+        const sections = document.querySelectorAll('main section');
+
+        function changeNav() {
+            let index = sections.length;
+            while(--index && window.scrollY + 100 < sections[index].offsetTop) {}
+            
+            navLinks.forEach((link) => link.classList.remove('active'));
+            if (index >= 0 && navLinks[index]) { // Check if navLinks[index] exists
+                 navLinks[index].classList.add('active');
+                 // For mobile menu, ensure the correct link is targeted
+                 const mobileLink = document.querySelector(`#mobileMenu a[href="${navLinks[index].getAttribute('href')}"]`);
+                 if (mobileLink) mobileLink.classList.add('active');
+            }
+        }
+        changeNav(); // Initial call
+        window.addEventListener('scroll', changeNav);
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            // Close mobile menu when a link is clicked
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        }
+
+        // Accordion Toggle
+        const accordionToggles = document.querySelectorAll('.accordion-toggle');
+        accordionToggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const content = toggle.nextElementSibling;
+                const icon = toggle.querySelector('span');
+                if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+                    content.style.maxHeight = '0px';
+                    icon.style.transform = 'rotate(0deg)';
+                } else {
+                    // Close other open accordions in the same group (optional)
+                    // toggle.closest('.space-y-4').querySelectorAll('.accordion-content').forEach(c => c.style.maxHeight = '0px');
+                    // toggle.closest('.space-y-4').querySelectorAll('.accordion-toggle span').forEach(s => s.style.transform = 'rotate(0deg)');
+                    
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    icon.style.transform = 'rotate(180deg)';
+                }
+            });
+        });
+
+        // Interactive Card Modal
+        const interactiveCards = document.querySelectorAll('.interactive-card');
+        const detailModal = document.getElementById('detailModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalText = document.getElementById('modalText');
+        const closeModalButton = document.getElementById('closeModalButton');
+
+        interactiveCards.forEach(card => {
+            card.addEventListener('click', () => {
+                modalTitle.textContent = card.dataset.title;
+                modalText.textContent = card.dataset.text;
+                if(detailModal) detailModal.classList.remove('hidden');
+                if(detailModal) detailModal.classList.add('flex');
+            });
+        });
+
+        if(closeModalButton && detailModal) {
+            closeModalButton.addEventListener('click', () => {
+                detailModal.classList.add('hidden');
+                detailModal.classList.remove('flex');
+            });
+        }
+        if(detailModal){
+            detailModal.addEventListener('click', (e) => {
+                if (e.target === detailModal) {
+                    detailModal.classList.add('hidden');
+                    detailModal.classList.remove('flex');
+                }
+            });
+        }
+
+
+        // Chart.js Configuration
+        function wrapChartLabel(str, maxWidth = 16) {
+            if (!str || typeof str !== 'string') return '';
             if (str.length <= maxWidth) return str;
-            const words = String(str).split(' ');
+            
+            const words = str.split(' ');
             let lines = [];
             let currentLine = words[0];
+
             for (let i = 1; i < words.length; i++) {
-                if ((currentLine + ' ' + words[i]).length > maxWidth) {
+                if ((currentLine + ' ' + words[i]).length > maxWidth && currentLine.length > 0) {
                     lines.push(currentLine);
                     currentLine = words[i];
                 } else {
-                    currentLine += ' ' + words[i];
+                    currentLine += (currentLine.length > 0 ? ' ' : '') + words[i];
                 }
             }
-            lines.push(currentLine);
-            return lines;
+            if (currentLine.length > 0) {
+                 lines.push(currentLine);
+            }
+            return lines.length > 0 ? lines : [str]; // Ensure it always returns an array if multi-line, or original string if not
         }
 
-        const tooltipTitleCallback = function(tooltipItems) {
+        const chartTooltipTitleCallback = function(tooltipItems) {
             const item = tooltipItems[0];
+            if (!item || !item.chart || !item.chart.data || !item.chart.data.labels) return '';
             let label = item.chart.data.labels[item.dataIndex];
             if (Array.isArray(label)) {
                 return label.join(' ');
-            } else {
-                return label;
+            }
+            return label || '';
+        };
+
+        const chartOptionsBase = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: { color: '#3D405B' } // Primary text color
+                },
+                tooltip: {
+                    callbacks: { title: chartTooltipTitleCallback },
+                    titleFont: { weight: 'bold' },
+                    bodyFont: { size: 12 },
+                    backgroundColor: 'rgba(61, 64, 91, 0.9)', // Primary text color with opacity
+                    titleColor: '#FFFFFF',
+                    bodyColor: '#FFFFFF',
+                }
+            },
+            scales: {
+                x: {
+                    ticks: { color: '#3D405B', font: { size: 10 } }, // Primary text color for ticks
+                    grid: { display: false }
+                },
+                y: {
+                    ticks: { color: '#3D405B', font: { size: 10 } }, // Primary text color for ticks
+                    grid: { color: '#E5E7EB' } // Light gray grid lines
+                }
             }
         };
 
-        // Chart 1: Prequalified Audience Chart (Donut)
-        const prequalifiedAudienceCtx = document.getElementById('prequalifiedAudienceChart').getContext('2d');
-        new Chart(prequalifiedAudienceCtx, {
-            type: 'doughnut',
-            data: {
-                labels: [wrapLabel('High-Quality Leads (MQL/SQL Potential)',16), wrapLabel('General Interest / Less Qualified',16)],
-                datasets: [{
-                    label: 'Audience Qualification',
-                    data: [70, 30], // Illustrative data: 70% high quality
-                    backgroundColor: ['#FF6B6B', '#4ECDC4'],
-                    borderColor: ['#FFFFFF', '#FFFFFF'],
-                    borderWidth: 2
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'bottom',
-                        labels: {
-                            font: { size: 10 },
-                            boxWidth: 20,
-                            padding:15,
-                            generateLabels: function(chart) {
-                                const data = chart.data;
-                                if (data.labels.length && data.datasets.length) {
-                                    return data.labels.map(function(label, i) {
-                                        const meta = chart.getDatasetMeta(0);
-                                        const style = meta.controller.getStyle(i);
-                                        const unwrappedLabel = Array.isArray(label) ? label.join(' ') : label;
-                                        return {
-                                            text: unwrappedLabel,
-                                            fillStyle: style.backgroundColor,
-                                            strokeStyle: style.borderColor,
-                                            lineWidth: style.borderWidth,
-                                            hidden: !chart.getDataVisibility(i),
-                                            index: i
-                                        };
-                                    });
-                                }
-                                return [];
-                            }
-                        }
-                    },
-                    tooltip: {
-                        callbacks: { title: tooltipTitleCallback }
-                    },
-                    title: {
-                        display: false,
-                        text: 'Illustrative Audience Breakdown'
-                    }
-                },
-                cutout: '60%'
-            }
-        });
-
-        // Chart 2: Conversion Funnel Chart (Bar)
-        const conversionFunnelCtx = document.getElementById('conversionFunnelChart').getContext('2d');
-        const funnelLabels = [
-            wrapLabel('Total Participants', 16),
-            wrapLabel('Engaged Booth Visitors (Est. Avg)', 16),
-            wrapLabel('Sales Qualified Leads (SQLs Est. Avg)', 16),
-            wrapLabel('Closed Deals (Projected Avg)', 16)
-        ];
-        new Chart(conversionFunnelCtx, {
-            type: 'bar',
-            data: {
+        // Conversion Funnel Chart
+        const conversionFunnelCtx = document.getElementById('conversionFunnelChart');
+        if (conversionFunnelCtx) {
+            const funnelLabels = [
+                wrapChartLabel('Total Participants'),
+                wrapChartLabel('Engaged Booth Visitors (Avg)'),
+                wrapChartLabel('Sales Qualified Leads (SQLs Avg)'),
+                wrapChartLabel('Closed Deals (Avg)')
+            ];
+            const funnelData = {
                 labels: funnelLabels,
                 datasets: [{
                     label: 'Number of Individuals',
-                    data: [800, ((160 + 280) / 2), ((64 + 168) / 2), ((24 + 80) / 2)], // Using averages of ranges
-                    backgroundColor: ['#1A535C', '#4ECDC4', '#FF6B6B', '#F9E79F'],
+                    data: [800, (160 + 280) / 2, (64 + 168) / 2, (24 + 80) / 2],
+                    backgroundColor: ['#3D405B', '#81B29A', '#E07A5F', '#F4D35E'], // Palette: Primary, Accent1, Accent2, Yellowish
                     borderColor: '#FFFFFF',
-                    borderWidth: 1
+                    borderWidth: 2,
+                    borderRadius: 5,
                 }]
-            },
-            options: {
-                indexAxis: 'y',
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    x: {
-                        beginAtZero: true,
-                        title: { display: true, text: 'Count' }
+            };
+            new Chart(conversionFunnelCtx, {
+                type: 'bar',
+                data: funnelData,
+                options: {
+                    ...chartOptionsBase,
+                    indexAxis: 'y', // For horizontal bar chart to resemble funnel
+                    scales: {
+                        x: { ...chartOptionsBase.scales.x, stacked: false, title: { display: true, text: 'Count', color: '#3D405B'} },
+                        y: { ...chartOptionsBase.scales.y, stacked: false, ticks: {...chartOptionsBase.scales.y.ticks, autoSkip: false} }
                     },
-                    y: {
-                         ticks: { font: {size: 10} }
-                    }
-                },
-                plugins: {
-                    legend: { display: false },
-                    tooltip: {
-                        callbacks: { title: tooltipTitleCallback }
-                    },
-                    title: {
-                        display: false,
-                        text: 'Projected Conversion Funnel (Average Estimates)'
+                    plugins: {
+                         ...chartOptionsBase.plugins,
+                        legend: { display: false },
+                        title: { display: true, text: 'Projected Conversion Funnel (Average Estimates)', color: '#3D405B', font: {size: 14, weight: 'bold'}}
                     }
                 }
-            }
-        });
-    </script>
+            });
+        }
 
+        // Gemini API Integration
+        const API_KEY = ""; // If you want to use models other than gemini-2.0-flash or imagen-3.0-generate-002, provide an API key here. Otherwise, leave this as-is.
+
+        // Lead Qualification Assistant Logic
+        const leadNotesInput = document.getElementById('leadNotesInput');
+        const qualifyLeadButton = document.getElementById('qualifyLeadButton');
+        const qualifyLeadButtonText = document.getElementById('qualifyLeadButtonText');
+        const qualifyLeadLoading = document.getElementById('qualifyLeadLoading');
+        const leadQualificationOutput = document.getElementById('leadQualificationOutput');
+
+        if (qualifyLeadButton) {
+            qualifyLeadButton.addEventListener('click', async () => {
+                const notes = leadNotesInput.value.trim();
+                if (!notes) {
+                    leadQualificationOutput.textContent = 'Please enter conversation notes to qualify the lead.';
+                    leadQualificationOutput.classList.remove('hidden');
+                    return;
+                }
+
+                qualifyLeadButtonText.textContent = 'Qualifying...';
+                qualifyLeadLoading.classList.remove('hidden');
+                qualifyLeadButton.disabled = true;
+                leadQualificationOutput.classList.add('hidden');
+
+                try {
+                    let chatHistory = [];
+                    const prompt = `Analyze the following conversation notes from an event lead and classify them as either 'Marketing Qualified Lead (MQL)', 'Sales Qualified Lead (SQL)', or 'Needs Nurturing'. Provide a brief justification for the classification and suggest one or two clear next steps for NutriChef.
+                    Conversation Notes: "${notes}"
+                    
+                    Format your response clearly, starting with the classification.`;
+                    
+                    chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                    const payload = { contents: chatHistory };
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
+                    
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    
+                    const result = await response.json();
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const text = result.candidates[0].content.parts[0].text;
+                        leadQualificationOutput.textContent = text;
+                        leadQualificationOutput.classList.remove('hidden');
+                    } else {
+                        leadQualificationOutput.textContent = 'Failed to get a response from the AI. Please try again.';
+                        leadQualificationOutput.classList.remove('hidden');
+                    }
+                } catch (error) {
+                    console.error('Error calling Gemini API for lead qualification:', error);
+                    leadQualificationOutput.textContent = 'An error occurred during qualification. Please check your network and try again.';
+                    leadQualificationOutput.classList.remove('hidden');
+                } finally {
+                    qualifyLeadButtonText.textContent = '✨ Qualify Lead';
+                    qualifyLeadLoading.classList.add('hidden');
+                    qualifyLeadButton.disabled = false;
+                }
+            });
+        }
+
+        // Follow-up Email Draft Generator Logic
+        const leadNameInput = document.getElementById('leadNameInput');
+        const discussionPointsInput = document.getElementById('discussionPointsInput');
+        const callToActionInput = document.getElementById('callToActionInput');
+        const draftEmailButton = document.getElementById('draftEmailButton');
+        const draftEmailButtonText = document.getElementById('draftEmailButtonText');
+        const draftEmailLoading = document.getElementById('draftEmailLoading');
+        const emailDraftOutput = document.getElementById('emailDraftOutput');
+        const copyEmailButton = document.getElementById('copyEmailButton');
+
+        if (draftEmailButton) {
+            draftEmailButton.addEventListener('click', async () => {
+                const leadName = leadNameInput.value.trim();
+                const discussionPoints = discussionPointsInput.value.trim();
+                const callToAction = callToActionInput.value.trim();
+
+                if (!leadName || !discussionPoints || !callToAction) {
+                    emailDraftOutput.textContent = 'Please fill in all fields to draft the email.';
+                    emailDraftOutput.classList.remove('hidden');
+                    copyEmailButton.classList.add('hidden');
+                    return;
+                }
+
+                draftEmailButtonText.textContent = 'Drafting...';
+                draftEmailLoading.classList.remove('hidden');
+                draftEmailButton.disabled = true;
+                emailDraftOutput.classList.add('hidden');
+                copyEmailButton.classList.add('hidden');
+
+                try {
+                    let chatHistory = [];
+                    const prompt = `Draft a concise, professional follow-up email from NutriChef to "${leadName}" after an event.
+                    Key discussion points: "${discussionPoints}".
+                    Desired Call to Action: "${callToAction}".
+                    
+                    Ensure the tone is engaging and directly references the conversation. Start with "Subject:".`;
+                    
+                    chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                    const payload = { contents: chatHistory };
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
+                    
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    
+                    const result = await response.json();
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const text = result.candidates[0].content.parts[0].text;
+                        emailDraftOutput.value = text;
+                        emailDraftOutput.classList.remove('hidden');
+                        copyEmailButton.classList.remove('hidden');
+                    } else {
+                        emailDraftOutput.value = 'Failed to get a response from the AI. Please try again.';
+                        emailDraftOutput.classList.remove('hidden');
+                    }
+                } catch (error) {
+                    console.error('Error calling Gemini API for email draft:', error);
+                    emailDraftOutput.value = 'An error occurred during email drafting. Please check your network and try again.';
+                    emailDraftOutput.classList.remove('hidden');
+                } finally {
+                    draftEmailButtonText.textContent = '✨ Draft Follow-up Email';
+                    draftEmailLoading.classList.add('hidden');
+                    draftEmailButton.disabled = false;
+                }
+            });
+        }
+
+        if (copyEmailButton) {
+            copyEmailButton.addEventListener('click', () => {
+                emailDraftOutput.select();
+                document.execCommand('copy');
+                copyEmailButton.textContent = 'Copied!';
+                setTimeout(() => {
+                    copyEmailButton.textContent = 'Copy to Clipboard';
+                }, 2000);
+            });
+        }
+    </script>
 </body>
 </html>
