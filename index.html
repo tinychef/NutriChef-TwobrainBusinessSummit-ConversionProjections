@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Conversion Rate Analysis Infographic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!--
+        Chosen Color Palette: "Vibrant Teal and Coral"
+        - Primary (Teal): #1A535C (Dark Teal - for text, dark accents)
+        - Secondary (Coral): #FF6B6B (Coral - for highlights, calls to action, chart elements)
+        - Accent 1 (Light Teal): #4ECDC4 (Turquoise - for chart elements, secondary highlights)
+        - Accent 2 (Yellow): #F9E79F (Pale Yellow - for backgrounds of some elements, or subtle highlights)
+        - Background (Light): #F7FFF7 (Mint Cream - main page background)
+        - Text Light: #FFFFFF
+        - Card Background: #FFFFFF
+    -->
+    <!--
+        Narrative & Structure Plan:
+        1.  Hero/Introduction: Title, brief overview of the report's purpose.
+        2.  Executive Summary Highlights: Key conversion rate (3-10%) and deal numbers (24-80) as "Single Big Numbers".
+        3.  Understanding the Unique Event:
+            -   Event Characteristics (High-Ticket, Closed-Door, Pre-Qualified): Styled list/cards.
+            -   The Nutrition Offering (Sole provider): Text highlight.
+            -   Impact Visualization: Simplified HTML/CSS funnel showing accelerated sales process.
+        4.  Benchmarking - Context is Key:
+            -   Comparative B2B Rates (Table 1 from report): HTML Table.
+            -   Why event-specifics matter: Text explanation.
+        5.  Strategic Advantages - The Multipliers:
+            -   Pre-Qualified Audience Power: Donut chart (e.g., % of attendees being MQL/SQL quality).
+            -   Main Stage Proximity & Sole Offering: Text with icons (Unicode).
+        6.  Expected Conversion Funnel Breakdown:
+            -   Visual Funnel (Participants -> Engaged -> SQLs -> Deals): Bar chart or HTML/CSS funnel.
+            -   Projected Closed Deals Range (Table 2 from report): HTML Table.
+        7.  Maximizing Success - Actionable Strategies:
+            -   On-Site, Post-Event, Leveraging Niche: Styled lists.
+            -   Importance of Follow-up: Timeline-like HTML/CSS graphic for 48-72hr window.
+        8.  Conclusion - The Big Picture:
+            -   Reiterate key conversion range and deal numbers.
+            -   Emphasize strategic value.
+        Confirmation: NO SVG graphics will be used. NO Mermaid JS will be used.
+    -->
+    <!--
+        Visualization Choices:
+        -   Overall Conversion Rate (3-10%): Goal: Inform. Chosen: Single Big Number. Justification: Clear, immediate impact for a key stat. Method: HTML/Tailwind. NO SVG.
+        -   Closed Deals (24-80): Goal: Inform. Chosen: Single Big Number. Justification: Highlights tangible outcome. Method: HTML/Tailwind. NO SVG.
+        -   Accelerated Sales Funnel (Event vs. Typical): Goal: Organize/Compare. Chosen: HTML/CSS Flow Chart (simplified funnel). Justification: Visually shows the compression of sales stages due to event specifics. Method: HTML/Tailwind. NO SVG.
+        -   Comparative B2B Conversion Rates (Table 1): Goal: Organize/Compare. Chosen: Table. Justification: Direct representation of tabular data from report. Method: HTML/Tailwind. NO SVG.
+        -   Pre-Qualified Audience Impact (e.g. % MQL/SQL): Goal: Inform/Compare. Chosen: Donut Chart. Justification: Shows proportion of high-quality leads. Method: Chart.js (Canvas). NO SVG.
+        -   Expected Conversion Funnel (Participants to Deals): Goal: Organize/Change. Chosen: Bar Chart (Funnel-like). Justification: Clearly shows progression and drop-off through stages. Method: Chart.js (Canvas). NO SVG. (Alternative: HTML/CSS funnel if bar chart less clear).
+        -   Projected Closed Deals (Table 2): Goal: Organize. Chosen: Table. Justification: Direct representation. Method: HTML/Tailwind. NO SVG.
+        -   Follow-up Timeline (48-72hr): Goal: Organize/Change. Chosen: HTML/CSS Timeline. Justification: Emphasizes time-critical action. Method: HTML/Tailwind. NO SVG.
+        Confirmation: NO SVG graphics will be used. NO Mermaid JS will be used.
+    -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif; /* Assuming Inter is a fallback, Tailwind uses system fonts by default */
+            background-color: #F7FFF7; /* Mint Cream */
+            color: #1A535C; /* Dark Teal */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px; /* Default max-width */
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px; /* Base height */
+            max-height: 400px; /* Max height */
+        }
+        @media (min-width: 768px) { /* md breakpoint */
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .card {
+            background-color: #FFFFFF; /* Card Background */
+            border-radius: 0.5rem; /* rounded-lg */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+            padding: 1.5rem; /* p-6 */
+            margin-bottom: 1.5rem; /* mb-6 */
+        }
+        .primary-text { color: #1A535C; } /* Dark Teal */
+        .secondary-text { color: #FF6B6B; } /* Coral */
+        .accent-text { color: #4ECDC4; } /* Turquoise */
+        .bg-primary { background-color: #1A535C; }
+        .bg-secondary { background-color: #FF6B6B; }
+        .bg-accent-1 { background-color: #4ECDC4; }
+        .bg-accent-2 { background-color: #F9E79F; } /* Pale Yellow */
+        .border-secondary { border-color: #FF6B6B; }
+
+        .funnel-stage {
+            @apply py-2 px-4 text-center text-white mb-1 transition-all duration-300;
+            clip-path: polygon(0% 0%, 100% 0%, 90% 100%, 10% 100%);
+        }
+        .timeline-item {
+            @apply relative pl-8 py-2;
+        }
+        .timeline-item::before {
+            @apply content-[''] absolute left-2 top-1/2 w-3 h-3 bg-secondary rounded-full -translate-y-1/2;
+        }
+        .timeline-item::after {
+            @apply content-[''] absolute left-[0.8125rem] top-[calc(50%_+_0.375rem)] w-px h-full bg-gray-300;
+        }
+        .timeline-item:last-child::after {
+            @apply hidden;
+        }
+        .big-stat-value {
+            font-size: 3rem; /* Tailwind text-5xl or text-6xl */
+            font-weight: 700; /* bold */
+            color: #FF6B6B; /* Coral */
+        }
+        .big-stat-label {
+            font-size: 1.125rem; /* text-lg */
+            color: #1A535C; /* Dark Teal */
+            margin-top: 0.5rem; /* mt-2 */
+        }
+    </style>
+    <link rel="preconnect" href="https://rsms.me/">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1A535C',
+                        secondary: '#FF6B6B',
+                        'accent-1': '#4ECDC4',
+                        'accent-2': '#F9E79F',
+                        'light-bg': '#F7FFF7',
+                        'card-bg': '#FFFFFF',
+                        'text-light': '#FFFFFF',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-light-bg text-primary font-sans">
+
+    <header class="bg-primary text-text-light py-8 px-4 text-center">
+        <h1 class="text-4xl font-bold mb-2">Event Conversion Rate Analysis</h1>
+        <p class="text-lg max-w-3xl mx-auto">Visualizing the Potential of High-Ticket, Pre-Qualified Fitness Events</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <section class="card lg:col-span-3">
+                <h2 class="text-2xl font-semibold mb-4 primary-text">Executive Summary: Key Projections</h2>
+                <p class="mb-6 text-gray-700">This analysis focuses on a nutrition offering at a high-ticket, closed-door, pre-qualified US fitness event. The unique, favorable conditions significantly elevate conversion potential from 800 participants.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-center">
+                    <div>
+                        <p class="big-stat-value">3%-10%</p>
+                        <p class="big-stat-label">Expected Overall Conversion Rate</p>
+                    </div>
+                    <div>
+                        <p class="big-stat-value">24-80</p>
+                        <p class="big-stat-label">Projected Closed Deals</p>
+                    </div>
+                </div>
+                <p class="mt-6 text-sm text-gray-600 text-center">Achieving the higher end depends on robust post-event follow-up.</p>
+            </section>
+
+            <section class="card md:col-span-2 lg:col-span-3">
+                <h2 class="text-2xl font-semibold mb-4 primary-text">Understanding the Unique Event & Offering</h2>
+                <p class="mb-6 text-gray-700">The event's characteristics and the nature of the nutrition solution are pivotal in shaping conversion dynamics, effectively accelerating the sales funnel.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-xl font-medium mb-2 accent-text">Key Event Characteristics:</h3>
+                        <ul class="list-disc list-inside space-y-1 text-gray-700">
+                            <li><span class="font-semibold">High-Ticket:</span> Serious professional audience, decision-makers.</li>
+                            <li><span class="font-semibold">Closed-Door:</span> Exclusive, curated, focused engagement.</li>
+                            <li><span class="font-semibold">High Pre-Qualified:</span> Vetted attendees, relevant and interested.</li>
+                            <li><span class="font-semibold">US Fitness Event:</span> Specific market context.</li>
+                        </ul>
+                        <p class="mt-4 text-gray-700">This combination means attendees are already past initial awareness, entering the funnel at MQL or SQL stages.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-medium mb-2 accent-text">The Nutrition Offering Solution:</h3>
+                        <p class="text-gray-700 mb-2">Likely a B2B solution (e.g., AI-powered white-label plans for gyms/clinics like NutriChef) or high-value B2C coaching.</p>
+                        <div class="p-4 bg-accent-2 rounded-lg">
+                            <p class="font-semibold text-primary"><span class="text-2xl mr-2">🏆</span>"Only Nutrition Offering Solution Booth"</p>
+                            <p class="text-sm text-primary mt-1">This creates a temporary monopolistic advantage, concentrating demand and enhancing perceived authority.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-8">
+                    <h3 class="text-xl font-medium mb-3 text-center primary-text">Accelerated Sales Funnel Visualization</h3>
+                    <p class="text-center text-gray-600 mb-4">At this event, pre-qualification bypasses early funnel stages.</p>
+                    <div class="w-full max-w-md mx-auto">
+                        <div class="funnel-stage bg-gray-400 w-full">Typical: Awareness (Broad)</div>
+                        <div class="funnel-stage bg-gray-500 w-11/12 mx-auto">Typical: Interest (Leads)</div>
+                        <div class="funnel-stage bg-accent-1 w-10/12 mx-auto">Event Starts Here: Consideration (MQLs)</div>
+                        <div class="funnel-stage bg-secondary w-9/12 mx-auto">Event Focus: Evaluation (SQLs) & Decision</div>
+                    </div>
+                    <p class="text-center text-sm text-gray-500 mt-2">This event effectively starts engagements at a more qualified stage.</p>
+                </div>
+            </section>
+
+            <section class="card lg:col-span-3">
+                <h2 class="text-2xl font-semibold mb-4 primary-text">Benchmarking Conversion Rates: Context is Key</h2>
+                <p class="mb-6 text-gray-700">While general B2B benchmarks provide context, the event's unique nature makes event-specific and high-quality lead benchmarks far more relevant. General e-commerce rates for high-ticket items (0.5-1.5%) are not directly applicable here.</p>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rate (%)</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Relevance</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200 text-sm text-gray-700">
+                            <tr><td class="px-6 py-4 whitespace-nowrap">General B2B Lead Conversion</td><td class="px-6 py-4 whitespace-nowrap">2-5%</td><td class="px-6 py-4">Broad, less applicable.</td></tr>
+                            <tr><td class="px-6 py-4 whitespace-nowrap">Professional Services</td><td class="px-6 py-4 whitespace-nowrap">~12.3%</td><td class="px-6 py-4">More relevant for high-value offerings.</td></tr>
+                            <tr><td class="px-6 py-4 whitespace-nowrap">Event Leads vs. Other Channels</td><td class="px-6 py-4 whitespace-nowrap">31% Higher</td><td class="px-6 py-4">Highlights event lead quality.</td></tr>
+                            <tr><td class="px-6 py-4 whitespace-nowrap">Direct/Inbound B2B (Qualified)</td><td class="px-6 py-4 whitespace-nowrap">5-10%</td><td class="px-6 py-4">Relevant for qualified, interested leads.</td></tr>
+                            <tr><td class="px-6 py-4 whitespace-nowrap">MQL to SQL Conversion</td><td class="px-6 py-4 whitespace-nowrap">20-30%</td><td class="px-6 py-4">Indicates potential of qualified leads.</td></tr>
+                            <tr><td class="px-6 py-4 whitespace-nowrap">Opportunities to Won</td><td class="px-6 py-4 whitespace-nowrap">20-30%</td><td class="px-6 py-4">Final closing stage for qualified ops.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="mt-4 text-gray-700">The fitness industry's struggle with member conversion highlights a pain point NutriChef addresses, making attendees receptive.</p>
+            </section>
+
+            <section class="card md:col-span-1 lg:col-span-1">
+                <h2 class="text-2xl font-semibold mb-4 primary-text">Strategic Advantages</h2>
+                 <p class="mb-4 text-gray-700">Several factors synergistically amplify conversion potential:</p>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="flex items-start">
+                        <span class="text-secondary text-xl mr-2">⭐</span>
+                        <div><span class="font-semibold">High Pre-Qualification:</span> Attendees are filtered, high-intent, and closer to purchase. More interactions are high-value.</div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-secondary text-xl mr-2">📍</span>
+                        <div><span class="font-semibold">Main Stage Proximity:</span> Maximizes visibility and captures energized, receptive visitors.</div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-secondary text-xl mr-2">🥇</span>
+                        <div><span class="font-semibold">Sole Nutrition Offering:</span> Eliminates direct competition, funnels all related demand to one booth, boosts authority.</div>
+                    </li>
+                </ul>
+                <p class="mt-4 text-gray-700">This combination creates a highly efficient conversion environment.</p>
+            </section>
+
+            <section class="card md:col-span-1 lg:col-span-2">
+                <h2 class="text-2xl font-semibold mb-4 primary-text">Pre-Qualified Audience Impact</h2>
+                <p class="mb-4 text-gray-700">A significant portion of event attendees are already Marketing Qualified Leads (MQLs) or Sales Qualified Leads (SQLs) due to pre-qualification.</p>
+                <div class="chart-container h-[250px] md:h-[300px]">
+                    <canvas id="prequalifiedAudienceChart"></canvas>
+                </div>
+                <p class="text-sm text-gray-600 mt-2 text-center">Illustrative: High percentage of attendees are quality leads.</p>
+            </section>
+
+
+            <section class="card lg:col-span-3">
+                <h2 class="text-2xl font-semibold mb-4 primary-text">Expected Conversion Funnel Breakdown</h2>
+                <p class="mb-6 text-gray-700">From 800 participants, the journey to closed deals is significantly compressed due to the event's nature. The focus is on converting already qualified interest.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                    <div>
+                        <h3 class="text-xl font-medium mb-3 primary-text">Projected Funnel Stages (from 800 Participants)</h3>
+                        <div class="chart-container h-[300px] md:h-[380px]">
+                            <canvas id="conversionFunnelChart"></canvas>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-medium mb-3 primary-text">Quantitative Projection Summary</h3>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Funnel Stage</th>
+                                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Count (Range)</th>
+                                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Cumulative Rate</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200 text-sm text-gray-700">
+                                    <tr><td class="px-4 py-2">Total Participants</td><td class="px-4 py-2">800</td><td class="px-4 py-2">N/A</td></tr>
+                                    <tr><td class="px-4 py-2">Engaged Booth Visitors</td><td class="px-4 py-2">160 - 280</td><td class="px-4 py-2">20-35%</td></tr>
+                                    <tr><td class="px-4 py-2">Sales Qualified Leads (SQLs)</td><td class="px-4 py-2">64 - 168</td><td class="px-4 py-2">8-21%</td></tr>
+                                    <tr><td class="px-4 py-2 font-semibold text-secondary">Closed Deals</td><td class="px-4 py-2 font-semibold text-secondary">13 - 59 (Refined: 24-80)</td><td class="px-4 py-2 font-semibold text-secondary">1.63-7.38% (Refined: 3-10%)</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p class="mt-3 text-sm text-gray-600">The refined 3-10% (24-80 deals) considers all strategic advantages and aligns with high-performing direct sales.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card lg:col-span-3">
+                <h2 class="text-2xl font-semibold mb-4 primary-text">Strategies for Maximizing Conversion</h2>
+                <p class="mb-6 text-gray-700">Achieving the higher end of projections requires active and disciplined lead management, both on-site and post-event.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div>
+                        <h3 class="text-lg font-medium mb-2 accent-text">🚀 On-Site Engagement</h3>
+                        <ul class="list-disc list-inside space-y-1 text-sm text-gray-700">
+                            <li>Immediate demo/meeting scheduling.</li>
+                            <li>Open, inviting, interactive booth.</li>
+                            <li>Clear articulation of value for pre-qualified needs.</li>
+                            <li>Personalized conversations.</li>
+                            <li>Real-time lead qualification.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-medium mb-2 accent-text">⏱️ Post-Event Follow-Up</h3>
+                        <ul class="list-disc list-inside space-y-1 text-sm text-gray-700">
+                            <li>Re-engage ALL leads within 48-72 hours (CRITICAL).</li>
+                            <li>Tailored email campaigns & direct outreach.</li>
+                            <li>Provide high-quality educational content.</li>
+                            <li>Nurture leads not immediately sales-ready.</li>
+                            <li>Track stage-to-stage conversion rates.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-medium mb-2 accent-text">💡 Leverage Unique Position</h3>
+                        <ul class="list-disc list-inside space-y-1 text-sm text-gray-700">
+                            <li>Emphasize "only nutrition solution" status.</li>
+                            <li>Showcase specialized niche knowledge.</li>
+                            <li>Share authentic brand story to build trust.</li>
+                            <li>Foster sense of exclusivity and community.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-6 p-4 bg-accent-2 rounded-lg">
+                    <h4 class="font-semibold text-primary mb-2">Critical Follow-Up Timeline:</h4>
+                    <div class="timeline-item">
+                        <p class="font-medium text-sm">Event Day: Capture Lead & Schedule Next Step</p>
+                        <p class="text-xs text-gray-600">Qualify, personalize, book demo/meeting if possible.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p class="font-medium text-sm text-secondary">Within 48 Hours: Initial Personalized Follow-Up</p>
+                        <p class="text-xs text-gray-600">Email, connect on LinkedIn, reference conversation.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <p class="font-medium text-sm">Within 72 Hours: Deeper Engagement / Value Add</p>
+                        <p class="text-xs text-gray-600">Share relevant content, answer questions, confirm scheduled meeting.</p>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-2">50% of deals go to the first to follow up. Speed is paramount.</p>
+                </div>
+            </section>
+
+            <section class="card lg:col-span-3 bg-primary text-text-light">
+                <h2 class="text-2xl font-semibold mb-4">Conclusion: A Strategic Opportunity</h2>
+                <p class="mb-4">The unique confluence of factors at this event creates an exceptional opportunity, projecting a **3% to 10% conversion rate (24-80 new clients)** from 800 participants. This far surpasses typical B2B benchmarks.</p>
+                <p class="mb-4">Success hinges on strategic on-site engagement and, crucially, aggressive, personalized post-event follow-up within 48-72 hours.</p>
+                <p class="font-semibold">This event is not just lead generation; it's a strategic investment in acquiring high-value, pre-qualified clients with potentially high lifetime value and referral potential. It's an acceleration point in the sales cycle.</p>
+                <p class="mt-4 text-sm opacity-80">Systematic tracking and analysis of conversion metrics will be vital for optimizing future event strategies.</p>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="text-center py-8 px-4 text-sm text-gray-500">
+        <p>&copy; 2025 NutriChef Event Insights. Infographic based on internal research report.</p>
+        <p>This infographic is for illustrative purposes, based on the provided "Event Conversion Rate Analysis" report.</p>
+    </footer>
+
+    <script>
+        function wrapLabel(str, maxWidth) {
+            if (!str) return '';
+            if (str.length <= maxWidth) return str;
+            const words = String(str).split(' ');
+            let lines = [];
+            let currentLine = words[0];
+            for (let i = 1; i < words.length; i++) {
+                if ((currentLine + ' ' + words[i]).length > maxWidth) {
+                    lines.push(currentLine);
+                    currentLine = words[i];
+                } else {
+                    currentLine += ' ' + words[i];
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+
+        const tooltipTitleCallback = function(tooltipItems) {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            } else {
+                return label;
+            }
+        };
+
+        // Chart 1: Prequalified Audience Chart (Donut)
+        const prequalifiedAudienceCtx = document.getElementById('prequalifiedAudienceChart').getContext('2d');
+        new Chart(prequalifiedAudienceCtx, {
+            type: 'doughnut',
+            data: {
+                labels: [wrapLabel('High-Quality Leads (MQL/SQL Potential)',16), wrapLabel('General Interest / Less Qualified',16)],
+                datasets: [{
+                    label: 'Audience Qualification',
+                    data: [70, 30], // Illustrative data: 70% high quality
+                    backgroundColor: ['#FF6B6B', '#4ECDC4'],
+                    borderColor: ['#FFFFFF', '#FFFFFF'],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: { size: 10 },
+                            boxWidth: 20,
+                            padding:15,
+                            generateLabels: function(chart) {
+                                const data = chart.data;
+                                if (data.labels.length && data.datasets.length) {
+                                    return data.labels.map(function(label, i) {
+                                        const meta = chart.getDatasetMeta(0);
+                                        const style = meta.controller.getStyle(i);
+                                        const unwrappedLabel = Array.isArray(label) ? label.join(' ') : label;
+                                        return {
+                                            text: unwrappedLabel,
+                                            fillStyle: style.backgroundColor,
+                                            strokeStyle: style.borderColor,
+                                            lineWidth: style.borderWidth,
+                                            hidden: !chart.getDataVisibility(i),
+                                            index: i
+                                        };
+                                    });
+                                }
+                                return [];
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: { title: tooltipTitleCallback }
+                    },
+                    title: {
+                        display: false,
+                        text: 'Illustrative Audience Breakdown'
+                    }
+                },
+                cutout: '60%'
+            }
+        });
+
+        // Chart 2: Conversion Funnel Chart (Bar)
+        const conversionFunnelCtx = document.getElementById('conversionFunnelChart').getContext('2d');
+        const funnelLabels = [
+            wrapLabel('Total Participants', 16),
+            wrapLabel('Engaged Booth Visitors (Est. Avg)', 16),
+            wrapLabel('Sales Qualified Leads (SQLs Est. Avg)', 16),
+            wrapLabel('Closed Deals (Projected Avg)', 16)
+        ];
+        new Chart(conversionFunnelCtx, {
+            type: 'bar',
+            data: {
+                labels: funnelLabels,
+                datasets: [{
+                    label: 'Number of Individuals',
+                    data: [800, ((160 + 280) / 2), ((64 + 168) / 2), ((24 + 80) / 2)], // Using averages of ranges
+                    backgroundColor: ['#1A535C', '#4ECDC4', '#FF6B6B', '#F9E79F'],
+                    borderColor: '#FFFFFF',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        title: { display: true, text: 'Count' }
+                    },
+                    y: {
+                         ticks: { font: {size: 10} }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: { title: tooltipTitleCallback }
+                    },
+                    title: {
+                        display: false,
+                        text: 'Projected Conversion Funnel (Average Estimates)'
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
